@@ -29,27 +29,29 @@ echo $assetsManager->renderJS(); // for use in footer by example
 ?>
 ```
 ## Other methods in AssetsManager Library
-**public function clear()**
+**public function clear()**<br>
 reset the assets list
 
 Example:
+```php
 $assetsManager->addCSS('filecss.css);
 echo $assetsManager->renderCSS();
 $assetsManager->clear();
 
 $assetsManager->addCSS('otherfile.css);
 echo $assetsManager->renderCSS();
+```
 
-**public function addCSS(string|array $filename, bool $defaultPath = true) : void**
-$filename Allow add css file or files
-$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.css')
+**public function addCSS(string|array $filename, bool $defaultPath = true) : void**<br>
+$filename Allow add css file or files<br>
+$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.css')<br>
 
-**public function addJS(string|array $filename, bool $defaultPath = true) : void**
-$filename Allow add js file or files
-$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.js')
+**public function addJS(string|array $filename, bool $defaultPath = true) : void**<br>
+$filename Allow add js file or files<br>
+$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.js')<br>
 
-**public function renderCSS() : string**
-Return the css files in browser, example of output
+**public function renderCSS() : string**<br>
+Return the css files in browser, example of output<br>
 <link rel="stylesheet" href="myfile.css" />
 
 **public function renderJS() : string**
