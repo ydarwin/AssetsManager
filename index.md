@@ -3,9 +3,12 @@
 ## Controller Example
 
 **Using the Library**
+```php
 use App\Libraries\AssetsManager;
+```
 
 **In your Controller**
+```php
 public function index() {
   $assetsManager = new AssetsManager('https://yourDomain.com/public/assets/');
   $assetsManager->addCSS('bootstrap.min.css'); // Add single css file
@@ -16,14 +19,15 @@ public function index() {
   
   view('myview, ['assetsManager' => $assetsManager]);  
 }
-
+```
 **In your View**
+```php
 <?php
 echo $assetsManager->renderCSS(); // for use in header by example
 
 echo $assetsManager->renderJS(); // for use in footer by example
 ?>
-
+```
 ## Other methods in AssetsManager Library
 **public function clear()**
 reset the assets list
