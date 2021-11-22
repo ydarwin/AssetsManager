@@ -1,37 +1,53 @@
-## Welcome to GitHub Pages
+## Welcome to AssetsManager Library for CodeIgniter 4
 
-You can use the [editor on GitHub](https://github.com/ydarwin/AssetsManager/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Controller Example
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Using the Library**
+use App\Libraries\AssetsManager;
 
-### Markdown
+**In your Controller**
+public function index() {
+  $assetsManager = new AssetsManager('https://yourDomain.com/public/assets/');
+  $assetsManager->addCSS('bootstrap.min.css'); // Add single css file
+  $assetsManager->addCSS(['bootstrap.min.css', 'othercssfile.css']); // Add multiple css file
+  
+  $assetsManager->addJS('jquery.min.js'); // Add single css file
+  $assetsManager->addJS(['jquery.min.js', 'otherjsfile.css']); // Add multiple js file
+  
+  view('myview, ['assetsManager' => $assetsManager]);  
+}
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+**In your View**
+<?php
+echo $assetsManager->renderCSS(); // for use in header by example
 
-```markdown
-Syntax highlighted code block
+echo $assetsManager->renderJS(); // for use in footer by example
+?>
 
-# Header 1
-## Header 2
-### Header 3
+## Other methods in AssetsManager Library
+**public function clear()**
+reset the assets list
 
-- Bulleted
-- List
+Example:
+$assetsManager->addCSS('filecss.css);
+echo $assetsManager->renderCSS();
+$assetsManager->clear();
 
-1. Numbered
-2. List
+$assetsManager->addCSS('otherfile.css);
+echo $assetsManager->renderCSS();
 
-**Bold** and _Italic_ and `Code` text
+**public function addCSS(string|array $filename, bool $defaultPath = true) : void**
+$filename Allow add css file or files
+$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.css')
 
-[Link](url) and ![Image](src)
-```
+**public function addJS(string|array $filename, bool $defaultPath = true) : void**
+$filename Allow add js file or files
+$defaultPath if false you can add css like this $assetsManager->addCSS('http://otherDomain.com/file.js')
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+**public function renderCSS() : string**
+Return the css files in browser, example of output
+<link rel="stylesheet" href="myfile.css" />
 
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ydarwin/AssetsManager/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+**public function renderJS() : string**
+Return the js files in browser, example of output
+<script type="text/javascript" src="myfile.js">
